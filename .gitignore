@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.slidev/
+.env
+.env.*
+!.env.example
+*.log
+.beads/
+test-results/
+playwright-report/

@@ -1,0 +1,20 @@
+html { background:#101d29; }
+.slidev-layout { height:100%; box-sizing:border-box; color:#edf3f3; background:radial-gradient(ellipse at 95% 5%,#173f49 0,transparent 48%),#101d29; padding:42px 58px; font-family:Arial,sans-serif; }
+.slidev-layout h1 { font-size:42px;line-height:1.13;font-weight:700;letter-spacing:-1.3px;margin:0 0 28px;max-width:850px; }
+.slidev-layout h2 {font-size:27px;line-height:1.4;font-weight:400;color:#b6cdcf;margin:10px 0 25px;}
+.slidev-layout p {line-height:1.55;}
+.eyebrow {color:#81d5c4;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;font-weight:700;}
+.hero-path,.visual-equation {display:flex;align-items:center;gap:17px;margin:34px 0;flex-wrap:wrap;}
+.hero-path span,.visual-equation span {background:#203642;border:1px solid #3b6068;padding:17px 20px;border-radius:10px;font-size:22px;}
+.hero-path b,.visual-equation b {color:#81d5c4;font-size:26px;}
+.cards {display:grid;gap:18px;margin:20px 0;}
+.three {grid-template-columns:repeat(3,1fr)} .two {grid-template-columns:repeat(2,1fr)}
+.cards>div {background:#1a2e3a;border-top:3px solid #81d5c4;border-radius:6px;padding:16px;}
+.cards b {font-size:21px;color:#a3e5d8;}
+.cards p {font-size:19px;margin-bottom:0;color:#d9e6e9;}
+.note {border-left:3px solid #81d5c4;padding:9px 16px;font-size:18px;color:#c4d6da;margin-top:16px;line-height:1.5;}
+.pending {margin-top:16px;color:#e3c88b;font-size:16px;line-height:1.5;padding:10px 14px;border:1px dashed #7c7055;border-radius:6px;}
+.edition {margin-top:36px;font-size:15px;color:#c1d0d3;}
+.digit-row {font:56px monospace;letter-spacing:15px;color:#a3e5d8;margin:20px 0;}
+button:focus-visible,input:focus-visible {outline:3px solid #e3c88b;outline-offset:4px;}
+@media (prefers-reduced-motion:reduce) {*,*::before,*::after {animation:none!important;transition:none!important;}}
