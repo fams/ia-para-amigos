@@ -2,6 +2,8 @@
 
 Esqueleto original em Slidev de um curso visual dos fundamentos à construção de agentes, para pessoas de diferentes áreas. **Versão 0.1: roteiro navegável, não curso concluído.**
 
+[Abrir os slides](https://fams.github.io/ia-para-amigos/) · [Build e publicação](https://github.com/fams/ia-para-amigos/actions/workflows/pages.yml)
+
 ## Executar
 
 Node.js 24 LTS (mínimo 22.12), npm:
