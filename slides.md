@@ -71,16 +71,56 @@ Precisamos entender o suficiente para **delegar, verificar e controlar**.
 
 ---
 
-# Markov: do estado atual ao próximo
+<div class="eyebrow markov-eyebrow">1902 → 1906 · A pergunta</div>
 
-<ConceptSteps :labels="['Estado atual', 'Probabilidades', 'Próximo estado', 'Nova observação']" />
+# Os resultados precisam ser independentes?
 
-<div class="cards two">
-<div><b>A intuição</b><p>Um passo muda quais próximos passos são mais prováveis.</p></div>
-<div><b>A ponte para linguagem</b><p>Usar sequências simples antes de modelos que consideram contexto mais amplo.</p></div>
+<div class="markov-timeline">
+  <div><span>1902 · NEKRASOV</span><b>Independência era necessária?</b><p>Nekrasov defendia que, para a lei dos grandes números funcionar, os resultados precisavam ser independentes.</p></div>
+  <div><span>1906 · MARKOV</span><b>Não para toda sequência.</b><p>Markov mostrou que, em certas sequências dependentes, as médias também podem se estabilizar.</p></div>
 </div>
 
-<div class="pending">Narrativa histórica Markov/Nekrasov e ligação com a lei dos grandes números: fontes ainda em curadoria.</div>
+<div class="note">Dependência não impede regularidade. Em seguida, Markov procurou um exemplo na literatura.</div>
+
+<div class="markov-source"><a href="https://doi.org/10.1016/j.laa.2003.12.041">Fonte histórica: Basharin, Langville e Naumov (2004)</a></div>
+
+<!-- Por independentes, entenda que saber um resultado não altera as chances do outro. Num jogo de moedas ideal isso pode ser razoável; numa sequência de letras, é uma questão empírica. Não diga que dependência garante a lei dos grandes números. -->
+
+---
+
+<div class="eyebrow markov-eyebrow">1913 · O experimento com Pushkin</div>
+
+# A próxima letra depende da anterior?
+
+Em *Evguêni Oniéguin*, Markov marcou **20.000 letras** como vogais ou consoantes.
+
+<div class="markov-history-chart">
+  <div class="markov-key"><span>■ Vogal</span><span>■ Consoante</span></div>
+  <div class="markov-history-row"><b>Depois de vogal</b><div class="markov-history-track" role="img" aria-label="Depois de vogal, cerca de 12,8% de vogais"><i style="width:12.8%"></i><em style="width:87.2%"></em></div></div>
+  <div class="markov-history-row"><b>Depois de consoante</b><div class="markov-history-track" role="img" aria-label="Depois de consoante, cerca de 66,3% de vogais"><i style="width:66.3%"></i><em style="width:33.7%"></em></div></div>
+</div>
+
+<div class="note">A letra anterior muda bastante as chances. E se fizermos a contagem com <i>Os Sertões</i>?</div>
+
+<div class="markov-source"><a href="https://doi.org/10.1017/S0269889706001074">Fonte: Markov (1913), tradução do texto original</a></div>
+
+<!-- Nota de apresentação: cerca de 12,8% de vogais depois de uma vogal, contra 66,3% depois de uma consoante. Duas barras de igual largura, cada uma com o próprio denominador. A contagem histórica é no trecho russo; a demonstração seguinte usa pares e trincas de letras internas a palavras de Os Sertões. Os recortes não são diretamente comparáveis. -->
+
+---
+
+# Que letra cai na faixa?
+
+<MarkovRuler />
+
+<!-- Peça um inteiro de 1 a 1.000. Mostre as faixas antes de aplicar. Começando em A, 787, 854, 147, 868 reproduzem ASTAS se usar a letra sorteada em cada passo. -->
+
+---
+
+# E se olharmos duas letras?
+
+<MarkovRuler trigram />
+
+<!-- Compare QU e OU e peça à turma para aplicar o mesmo número nos dois casos. As frequências são de trincas dentro de cada palavra. Não há palpite para um contexto sem observações. -->
 
 ---
 

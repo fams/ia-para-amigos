@@ -32,6 +32,28 @@ jobs:
         run: npm run build -- --base "/${REPOSITORY_NAME}/"
       - run: npx playwright install --with-deps chromium
       - run: npm test
+      - run: node --test tests/markov-ranges.test.mjs
+      - name: Package dev PR preview
+        if: github.event_name == 'pull_request' && github.base_ref == 'dev'
+        run: |
+          mkdir -p "${RUNNER_TEMP}/slidev-preview/offline/ia-para-amigos"
+          cp -a dist/. "${RUNNER_TEMP}/slidev-preview/offline/ia-para-amigos/"
+          cp scripts/apresentar.py scripts/README-preview.txt "${RUNNER_TEMP}/slidev-preview/"
+          (cd "${RUNNER_TEMP}/slidev-preview" && zip -qr "${RUNNER_TEMP}/slidev-dev-preview.zip" .)
+      - name: Attach dev PR preview
+        if: github.event_name == 'pull_request' && github.base_ref == 'dev'
+        id: dev-preview
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          path: ${{ runner.temp }}/slidev-dev-preview.zip
+          archive: false
+          if-no-files-found: error
+          retention-days: 14
+      - name: Link dev PR preview in run summary
+        if: github.event_name == 'pull_request' && github.base_ref == 'dev'
+        env:
+          PREVIEW_URL: ${{ steps.dev-preview.outputs.artifact-url }}
+        run: printf '[Baixar prévia da apresentação](%s)\n' "$PREVIEW_URL" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:

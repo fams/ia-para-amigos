@@ -35,3 +35,13 @@ Não incluir dados pessoais, credenciais, documentos privados ou material extern
 ## Validação
 
 O build e os testes de navegador cobrem os 32 slides principais, verificam cortes verticais, erros JavaScript, controle de passos, reset e mudança dos pesos do perceptron. As dependências possuem lockfile; overrides pontuais mantêm DOMPurify e image-size em versões corrigidas.
+
+## Prévia de PR para `dev`
+
+PRs direcionados a `dev` passam pelo mesmo build e pelos testes. Se aprovados, o
+workflow gera `slidev-dev-preview.zip` e mostra o link no resumo da execução em
+**Actions**. Descompacte e execute `py apresentar.py` no Windows ou
+`python3 apresentar.py` no Mac/Linux. Abra
+`http://127.0.0.1:8765/ia-para-amigos/5` para começar na história de Markov.
+O artefato fica disponível por 14 dias. Essa prévia não publica nem atualiza
+o site público; apenas `main` faz deploy no GitHub Pages.
