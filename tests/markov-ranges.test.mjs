@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
-import { rangesFor, choose, alphabet } from '../components/markov-ranges.mjs'
+import { rangesFor, choose, alphabet, sampleWord } from '../components/markov-ranges.mjs'
 
 const matrix = JSON.parse(await readFile(new URL('../data/sertoes-contagens.json', import.meta.url), 'utf8'))
 assert.equal(Object.values(matrix).flat().reduce((a,b)=>a+b), 653289)
@@ -37,3 +37,20 @@ for (const context of Object.keys(triples)) {
   assert.equal(ranges.reduce((n,r)=>n+r.length,0),1000)
 }
 console.log('Trigramas: cobertura, contagens e exemplo QU/OU verificados.')
+for (const [data, context, letter, start, end] of [
+  [matrix, 'U', 'L', 463, 541],
+  [triples, 'QU', 'E', 147, 894],
+  [triples, 'OU', 'T', 475, 890],
+]) {
+  const hit = choose(rangesFor(data, context), 500)
+  assert.deepEqual([hit.letter, hit.start, hit.end], [letter, start, end])
+}
+for (const [draws, digram, trigram] of [
+  [[113,271,389], 'QUCAN', 'QUALH'],
+  [[500,167,703], 'QULAR', 'QUEIS'],
+  [[797,337,622], 'QUPER', 'QUELH'],
+]) {
+  assert.equal(sampleWord(matrix, 'QU', 1, draws), digram)
+  assert.equal(sampleWord(triples, 'QU', 2, draws), trigram)
+}
+assert.equal(sampleWord(triples, 'QQ', 2, [500]), 'QQ')

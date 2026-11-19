@@ -110,17 +110,23 @@ Em *Evguêni Oniéguin*, Markov marcou **20.000 letras** como vogais ou consoant
 
 # Que letra cai na faixa?
 
+<div class="markov-slide-deck">Digrama: só a última letra muda as chances da próxima.</div>
+
 <MarkovRuler />
 
-<!-- Peça um inteiro de 1 a 1.000. Mostre as faixas antes de aplicar. Começando em A, 787, 854, 147, 868 reproduzem ASTAS se usar a letra sorteada em cada passo. -->
+<!-- Peça um inteiro de 1 a 1.000. Mostre as faixas antes de aplicar. Começando em A, 787, 854, 147, 868 reproduzem ASTAS se usar a letra sorteada em cada passo. A régua de 1.000 aproxima a distribuição: A → Y tem 4 em 86.752 ocorrências e fica sem posição na régua. -->
 
 ---
 
 # E se olharmos duas letras?
 
+<div class="markov-slide-deck">O trigrama distingue padrões que o digrama mistura. Pode soar mais como português, mas pares raros têm poucos exemplos.</div>
+
+<MarkovComparison />
+
 <MarkovRuler trigram />
 
-<!-- Compare QU e OU e peça à turma para aplicar o mesmo número nos dois casos. As frequências são de trincas dentro de cada palavra. Não há palpite para um contexto sem observações. -->
+<!-- Compare U, QU e OU usando o número 500. Os três usam Os Sertões com a mesma normalização, sem acentos e apenas dentro das palavras. Mostre que os resultados das amostras ilustram uma possibilidade, não avaliam a qualidade. Não há palpite para um contexto sem observações. -->
 
 ---
 

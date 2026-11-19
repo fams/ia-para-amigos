@@ -25,3 +25,14 @@ export function choose(ranges, input) {
   const range = ranges.find(r => r.start <= n && n <= r.end)
   return range ? { ...range, n } : undefined
 }
+
+export function sampleWord(matrix, prefix, contextLength, draws) {
+  let word = prefix
+  for (const n of draws) {
+    const context = word.slice(-contextLength)
+    const hit = matrix[context] && choose(rangesFor(matrix, context), n)
+    if (!hit) break
+    word += hit.letter
+  }
+  return word
+}

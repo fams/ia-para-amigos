@@ -35,3 +35,6 @@ button:focus-visible,input:focus-visible {outline:3px solid #e3c88b;outline-offs
 .markov-history-track { display:flex; height:28px; overflow:hidden; border-radius:4px; }
 .markov-history-track i { background:#ffd991; }
 .markov-history-track em { background:#83d4ca; }
+.markov-slide-deck { color:#bdd4d7; font-size:17px; line-height:1.25; margin:0 0 10px; }
+.slidev-layout:has(.comparison-cards) { padding-top:32px; padding-bottom:22px; }
+.slidev-layout:has(.comparison-cards) h1 { margin-bottom:15px; }

@@ -61,7 +61,7 @@ watch(input, () => {
 </script>
 
 <template>
-  <section class="ruler-demo" aria-label="Sorteio de letras com régua de Markov">
+  <section class="ruler-demo" :class="{ compact: trigram }" aria-label="Sorteio de letras com régua de Markov">
     <form class="controls" @submit.prevent="draw">
       <label v-if="trigram" :for="uid + '-pair'">Duas letras anteriores
         <input :id="uid + '-pair'" class="context-input" :value="current" maxlength="2" placeholder="QU"
@@ -82,7 +82,7 @@ watch(input, () => {
 
     <div class="ruler-head">
       <span v-if="trigram" class="examples">
-        Digrama: 1 letra anterior. Trigrama: 2. Compare
+        Experimente
         <button type="button" @click="setContext('QU')" @keydown.stop>QU</button>
         <button type="button" @click="setContext('OU')" @keydown.stop>OU</button>
       </span>
@@ -130,7 +130,7 @@ watch(input, () => {
         <button type="button" @click="reset" @keydown.stop>Reiniciar</button>
       </div>
     </div>
-    <small>Frequências de {{ trigram ? 'trincas' : 'pares' }} dentro das palavras de <i>Os Sertões</i>, sem acentos. A régua aproxima chances em 1.000 posições.</small>
+    <small>Frequências de {{ trigram ? 'trincas' : 'pares' }} dentro das palavras de <i>Os Sertões</i>, sem acentos. </small>
   </section>
 </template>
 
@@ -148,6 +148,10 @@ button:disabled { opacity:.5; cursor:not-allowed; }
 .ruler-head { margin-bottom:12px; }
 .examples { display:flex; align-items:center; gap:7px; color:#bad4d9; font-size:16px; margin-bottom:7px; }
 .examples button { min-height:25px; padding:2px 9px; line-height:1.1; font-size:14px; }
+.compact .controls { margin-bottom:7px; }
+.compact .ruler-head { display:flex; align-items:baseline; gap:7px; margin-bottom:8px; }
+.compact .examples { margin:0 5px 0 0; }
+.compact .readout { height:35px; padding-block:0; margin:4px 0!important; }
 .controls .context-input { width:90px; }
 .ruler { position:relative; display:flex; height:42px; outline:1px solid #899fa4; }
 .segment { display:grid; align-content:center; justify-content:center; flex-shrink:0; color:#101d29; position:relative; overflow:hidden; }

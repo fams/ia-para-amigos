@@ -49,6 +49,15 @@ test('dois antecedentes mudam a faixa; sem evidência não há sorteio', async (
   const apply=slide.getByRole('button',{name:'Aplicar número'})
   const context=slide.getByRole('textbox',{name:'Duas letras anteriores'})
   await expect(slide.getByRole('heading',{name:'E se olharmos duas letras?'})).toBeVisible()
+  const comparison = slide.getByRole('region', {name:'Comparação controlada entre digrama e trigrama'})
+  for (const [ctx, output] of [['U','L'],['QU','E'],['OU','T']]) {
+    await expect(comparison.locator('[data-context="' + ctx + '"]')).toContainText(ctx + ' → ' + output)
+  }
+  await comparison.getByText('Ver 3 amostras').click()
+  await expect(comparison.getByRole('table')).toContainText('QUALH')
+  await expect(comparison.getByRole('table')).toContainText('QUCAN')
+  await comparison.getByText('Ver 3 amostras').click()
+
   await expect(context).toHaveValue('QU')
   await input.fill('500')
   await apply.click()
