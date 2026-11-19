@@ -33,6 +33,11 @@ function draw() {
   output.value = result || null
   error.value = result ? '' : 'Digite um número inteiro de 1 a 1.000.'
 }
+function roll() {
+  if (!observations.value) return
+  input.value = String(1 + Math.floor(Math.random() * 1000))
+  draw()
+}
 function advance() {
   if (!output.value) return
   const next = output.value.letter
@@ -77,6 +82,7 @@ watch(input, () => {
           maxlength="4" placeholder="1–1.000" autocomplete="off" :disabled="!observations" @keydown.stop />
       </label>
       <button class="apply" type="submit" :disabled="!observations" @keydown.stop>Aplicar número</button>
+      <button class="roll" type="button" :disabled="!observations" @click="roll" @keydown.stop>Sortear</button>
       <button type="button" :disabled="!output" @click="advance" @keydown.stop>Usar a letra sorteada</button>
     </form>
 
@@ -121,7 +127,7 @@ watch(input, () => {
       <template v-else-if="trigram && current.length !== 2">Digite duas letras de A a Z.</template>
       <template v-else-if="!observations">Esse par não foi seguido por uma letra no corpus. Tente QU ou OU.</template>
       <template v-else-if="error">{{ error }}</template>
-      <template v-else>Peça à turma um número de 1 a 1.000.</template>
+      <template v-else>Peça à turma um número de 1 a 1.000 ou clique em Sortear.</template>
     </p>
     <div class="footline">
       <div>Sequência <strong data-testid="markov-history">{{ history }}{{ output ? output.letter : '' }}</strong></div>
@@ -152,6 +158,7 @@ button:disabled { opacity:.5; cursor:not-allowed; }
 .compact .ruler-head { display:flex; align-items:baseline; gap:7px; margin-bottom:8px; }
 .compact .examples { margin:0 5px 0 0; }
 .compact .readout { height:35px; padding-block:0; margin:4px 0!important; }
+.roll { border-color:#8cdec8; color:#b6e6dc; }
 .controls .context-input { width:90px; }
 .ruler { position:relative; display:flex; height:42px; outline:1px solid #899fa4; }
 .segment { display:grid; align-content:center; justify-content:center; flex-shrink:0; color:#101d29; position:relative; overflow:hidden; }

@@ -80,3 +80,28 @@ test('dois antecedentes mudam a faixa; sem evidência não há sorteio', async (
   await expect(context).toHaveValue('UE')
   await expect(slide.getByTestId('markov-history')).toHaveText('QUE')
 })
+
+test('Sortear usa a mesma régua que o modo manual, no celular', async ({page}) => {
+  await page.setViewportSize({width:390,height:844})
+  for (const slideNumber of [7, 8]) {
+    await page.goto('/ia-para-amigos/' + slideNumber)
+    const slide = page.locator('.slidev-page:visible')
+    const input = slide.getByRole('textbox',{name:'Número da turma'})
+    const draw = slide.getByRole('button',{name:'Sortear',exact:true})
+    for (const [stub, number] of [[0,'1'], [0.999999,'1000'], [slideNumber===7 ? 0.7865 : 0.4995,slideNumber===7?'787':'500']] as const) {
+      await page.evaluate(value => { Math.random = () => value }, stub)
+      await draw.click()
+      await expect(input).toHaveValue(number)
+      const randomMessage = await slide.getByRole('status').textContent()
+      await expect(slide.locator('.draw-pin')).toBeVisible()
+      await input.fill(number)
+      await input.press('Enter')
+      expect(await slide.getByRole('status').textContent()).toBe(randomMessage)
+    }
+    await expect(slide.locator('.letter-result')).toHaveText(slideNumber===7?'S':'E')
+    if (slideNumber===8) {
+      await slide.getByRole('textbox',{name:'Duas letras anteriores'}).fill('QQ')
+      await expect(draw).toBeDisabled()
+    }
+  }
+})
