@@ -54,3 +54,50 @@ button:focus-visible,input:focus-visible {outline:3px solid var(--amber);outline
 .slidev-layout:has(.comparison-cards) { padding-top:32px; padding-bottom:22px; }
 .slidev-layout:has(.comparison-cards) h1 { margin-bottom:15px; }
 .slidev-layout.end { color:var(--ink); background:var(--paper); }
+
+/* Shannon: tutorial diagrams in the existing light palette. */
+.sh-a {background:#a7d8cc}.sh-b {background:#bad5e8}.sh-c {background:#f4d7a9}.sh-d {background:#decbe5}
+.slidev-layout:has(.shannon-hero) h1,.slidev-layout:has(.shannon-tokens) h1,.slidev-layout:has(.shannon-encode) h1 {margin-bottom:18px}
+.shannon-hero {display:grid;grid-template-columns:minmax(0,1fr) 194px;align-items:start;gap:38px}
+.shannon-guess-row {display:flex;align-items:center;gap:15px;padding:10px 0;margin:0 0 6px}
+.shannon-guess-row b {font-size:21px;min-width:162px}
+.shannon-tiles {display:flex;gap:7px}
+.shannon-tiles span {display:grid;place-items:center;width:42px;height:49px;border:1px solid var(--line);border-radius:6px;font:700 30px/1 monospace;background:#dcedea}
+.shannon-tiles .shannon-slot {border:2px dashed var(--accent);color:var(--accent);background:transparent}
+.shannon-hero .note {margin-top:14px}
+.shannon-portrait {margin:0;justify-self:end;width:184px}
+.shannon-portrait img {width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:8px}
+.shannon-portrait figcaption {margin-top:7px;font-size:13px;line-height:1.34;color:var(--muted)}
+.shannon-portrait a {color:var(--accent);text-decoration:underline}
+.shannon-tokens {display:grid;gap:20px}
+.shannon-token-title {display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.shannon-token-title b {font-size:21px}
+.shannon-token-title span {font-size:16px;color:var(--muted)}
+.shannon-token-grid {display:flex;gap:0}
+.shannon-token-group {min-width:0;flex-basis:0;background:transparent;text-align:center}
+.shannon-token-group small {display:block;font-size:15px;font-weight:700;border-top:2px solid var(--line);margin:4px 3px 0}
+.shannon-token-cells {display:flex;height:40px;gap:3px;margin:0 2px}
+.shannon-token-cells span {flex:1;display:grid;place-items:center;border-radius:4px;font:700 19px monospace}
+.shannon-token-group.sh-a .shannon-token-cells span {background:#a7d8cc}
+.shannon-token-group.sh-b .shannon-token-cells span {background:#bad5e8}
+.shannon-token-group.sh-c .shannon-token-cells span {background:#f4d7a9}
+.shannon-token-group.sh-d .shannon-token-cells span {background:#decbe5}
+.shannon-encode {display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:32px;align-items:start;margin-top:22px}
+.shannon-code {display:grid;gap:2px}
+.shannon-code>div {display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:7px;align-items:center;padding:6px 3px;border-bottom:1px solid var(--line)}
+.shannon-code>div:first-child {font:700 16px Arial;color:var(--accent);border-bottom:2px solid var(--accent)}
+.shannon-symbol {font-size:17px;justify-self:start;padding:3px 6px;border-radius:4px}
+.shannon-digits {display:flex;gap:3px}
+.shannon-digits code {width:22px;height:24px;display:grid;place-items:center;border:1px solid var(--line);border-radius:3px;font:700 17px monospace;background:var(--panel)}
+.shannon-tally-label {display:flex;align-items:baseline;justify-content:space-between;margin-bottom:7px;gap:6px;font-size:17px}
+.shannon-tally-label span {font-weight:700;color:var(--muted)}
+.shannon-bit-grid {display:grid;grid-template-columns:repeat(32,minmax(0,1fr));gap:1px;height:26px}
+.shannon-bit-grid i {display:block;min-width:0;border-radius:2px;border:1px solid #233d4333}
+.shannon-bit-grid .shannon-saved {background:transparent;border:1px dashed var(--accent)}
+.shannon-result {margin-top:17px}
+.shannon-result strong {color:var(--accent);display:block;font-size:32px;margin:14px 0 2px}
+.shannon-result small {font-size:16px;color:var(--muted)}
+
+/* Inserções multimídia: preserve a identidade clara e a área útil 16:9. */
+.slidev-layout:has(.markov-film), .slidev-layout:has(.flappy-canonical) { padding:26px 58px 20px; }
+.slidev-layout:has(.markov-film) h1, .slidev-layout:has(.flappy-canonical) h1 { font-size:38px; margin-bottom:12px; }

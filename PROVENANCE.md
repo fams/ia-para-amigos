@@ -11,3 +11,11 @@ Dependências de infraestrutura são distribuídas pelos respectivos projetos at
 Não foi atribuída uma licença de reutilização ao conteúdo autoral do curso nesta etapa. Publicação pública não implica concessão automática de uma licença adicional.
 
 Qualquer incorporação futura de material existente exige apresentar ao responsável os itens exatos, a finalidade e a licença para aprovação prévia.
+
+## Revisão multimídia
+
+O jogo incluído nesta revisão adapta o protótipo Flappy Micro, com gráficos originais desenhados no canvas e sem sprites do jogo comercial. O perceptron didático é usado diretamente para decidir a ação do pássaro; o modelo não é treinado durante a demonstração.
+
+A animação de Markov incorpora uma versão com a paleta clara aplicada ao MP4 v8 já renderizado em Manim. O movimento, os enquadramentos e a sequência não foram reanimados. A fonte editável incluída é o script de cor (`fontes/corrigir.py`), não a cena Manim original. Sobre texto, contagens, recortes e reprodução, consulte `fontes/NOTA-TECNICA.md`. Neste vídeo, Q → U inclui espaços como categoria e resulta em 6.230/6.231; os controles de digrama/trigrama nos slides contam dentro das palavras e têm denominadores próprios.
+
+**Segunda revisão de cor.** Suaviza a mudança de tons durante os fades e conserva o centro do cartão do livro enquanto o total de 964.641 pares é mostrado. As opacidades do Manim já estão incorporadas ao MP4; a mudança foi feita no tratamento de cor, não no projeto original. Duração, movimento e dados não mudaram. Para reproduzir esta revisão, use `fontes/corrigir.py`.

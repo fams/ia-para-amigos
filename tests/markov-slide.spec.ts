@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('a turma fornece o número e a faixa determina a letra', async ({ page }) => {
-  await page.goto('/ia-para-amigos/7')
+  await page.goto('/ia-para-amigos/9')
   const slide = page.locator('.slidev-page:visible')
   const readout = slide.getByRole('status')
   const input = slide.getByRole('textbox', {name:'Número da turma'})
@@ -43,7 +43,7 @@ test('a turma fornece o número e a faixa determina a letra', async ({ page }) =
 })
 
 test('dois antecedentes mudam a faixa; sem evidência não há sorteio', async ({page}) => {
-  await page.goto('/ia-para-amigos/8')
+  await page.goto('/ia-para-amigos/10')
   const slide=page.locator('.slidev-page:visible')
   const input=slide.getByRole('textbox',{name:'Número da turma'})
   const apply=slide.getByRole('button',{name:'Aplicar número'})
@@ -83,12 +83,12 @@ test('dois antecedentes mudam a faixa; sem evidência não há sorteio', async (
 
 test('Sortear usa a mesma régua que o modo manual, no celular', async ({page}) => {
   await page.setViewportSize({width:390,height:844})
-  for (const slideNumber of [7, 8]) {
+  for (const slideNumber of [9, 10]) {
     await page.goto('/ia-para-amigos/' + slideNumber)
     const slide = page.locator('.slidev-page:visible')
     const input = slide.getByRole('textbox',{name:'Número da turma'})
     const draw = slide.getByRole('button',{name:'Sortear',exact:true})
-    for (const [stub, number] of [[0,'1'], [0.999999,'1000'], [slideNumber===7 ? 0.7865 : 0.4995,slideNumber===7?'787':'500']] as const) {
+    for (const [stub, number] of [[0,'1'], [0.999999,'1000'], [slideNumber===9 ? 0.7865 : 0.4995,slideNumber===9?'787':'500']] as const) {
       await page.evaluate(value => { Math.random = () => value }, stub)
       await draw.click()
       await expect(input).toHaveValue(number)
@@ -98,8 +98,8 @@ test('Sortear usa a mesma régua que o modo manual, no celular', async ({page}) 
       await input.press('Enter')
       expect(await slide.getByRole('status').textContent()).toBe(randomMessage)
     }
-    await expect(slide.locator('.letter-result')).toHaveText(slideNumber===7?'S':'E')
-    if (slideNumber===8) {
+    await expect(slide.locator('.letter-result')).toHaveText(slideNumber===9?'S':'E')
+    if (slideNumber===10) {
       await slide.getByRole('textbox',{name:'Duas letras anteriores'}).fill('QQ')
       await expect(draw).toBeDisabled()
     }

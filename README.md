@@ -1,47 +1,30 @@
-# IA para amigos
+# Aula dos Amigos · Markov e Flappy Bird
 
-Esqueleto original em Slidev de um curso visual dos fundamentos à construção de agentes, para pessoas de diferentes áreas. **Versão 0.1: roteiro navegável, não curso concluído.**
+Versão local com 38 slides. Os demais conteúdos foram preservados da revisão visual clara.
+- **Slide 8:** animação de Markov no próprio slide, com controles de vídeo. Começa com zero pares contados, acompanha as barras mudando, destaca Q → U e mostra o sorteio.
+- **Slides 9 e 10:** controles de digrama e trigrama. O gerador de trigrama não faz parte do vídeo.
+- **Slide 15:** perceptron isolado, com pesos editáveis.
+- **Slide 16:** jogo Flappy com o mesmo tipo de perceptron controlando o pássaro. Ajuste os pesos e clique em **Um quadro** para observar a decisão. O modo manual serve para comparar.
 
-[Abrir os slides](https://fams.github.io/ia-para-amigos/) · [Build e publicação](https://github.com/fams/ia-para-amigos/actions/workflows/pages.yml)
+## Abrir no navegador
 
-## Executar
+Para o ZIP portátil de entrega, extraia o conteúdo inteiro, execute `py apresentar.py` (Windows) ou `python3 apresentar.py`, e acesse http://127.0.0.1:8786. Não abra o `index.html` direto do disco.
 
-Node.js 24 LTS (mínimo 22.12), npm:
+## Editar
 
-```sh
-npm ci
-npm run dev
-npm run build -- --base /ia-para-amigos/
-npm run preview
-npm test
-```
+A partir do checkout, com Node.js compatível, execute `npm ci` e `npm run dev`. Para gerar um build sem notas, use `npm run build`. As notas do professor permanecem no Markdown. O vídeo e o jogo estão em `public/`.
 
-## Estrutura
+## Demonstração em 30 segundos
 
-- `slides.md`: percurso principal e dois desvios ocultos.
-- `components/`: dois componentes originais: sequência navegável e perceptron com pesos editáveis.
-- `style.css`: identidade própria, sem fontes remotas ou marcas corporativas.
-- `.github/workflows/pages.yml`: build e testes em PR; build, testes e deploy em main.
-- `PROVENANCE.md`: origem e limites de reutilização.
+No slide 16, use **Um quadro** com os pesos de referência: a rede decide não bater a asa. Clique **Reiniciar**, mude só o viés de −0,8 para 0 e use **Um quadro** de novo. Mesmo ponto de partida, outra decisão: agora o pássaro bate a asa. O desenho mostra os valores que entraram na decisão do quadro, não uma rede à parte.
 
-O professor controla os passos dos diagramas. As caixas amarelas identificam demonstrações ou conteúdo ainda em desenvolvimento. Os desvios com `hide: true` ficam fora da navegação normal. O Flappy, o notebook MNIST e os laboratórios de agentes não estão integrados nesta edição.
+No slide 8, o vídeo reutiliza a animação Manim v8 e altera as cores no render final. Ele mantém pausa, aceleração, tabela 3D, Q → U e o sorteio nas faixas.
 
-## Publicação
-
-GitHub Pages por GitHub Actions; a base do build é derivada do nome do repositório. Somente pushes na branch main ou execução manual nessa branch podem publicar. Pull requests apenas constroem, sem permissão de deployment.
-
-Não incluir dados pessoais, credenciais, documentos privados ou material externo sem autorização específica. Todo conteúdo do repositório público, inclusive fontes e notas, é público. Não armazenar notas privadas aqui.
-
-## Validação
-
-O build e os testes de navegador cobrem os 32 slides principais, verificam cortes verticais, erros JavaScript, controle de passos, reset e mudança dos pesos do perceptron. As dependências possuem lockfile; overrides pontuais mantêm DOMPurify e image-size em versões corrigidas.
+No ZIP portátil, o vídeo acompanha o projeto uma única vez, em `public/videos/`. O servidor local já encontra esse arquivo. Para hospedar o build em outro serviço, execute `npm run build` novamente para copiar o vídeo para `dist/videos/` junto com os outros recursos.
 
 ## Prévia de PR para `dev`
 
-PRs direcionados a `dev` passam pelo mesmo build e pelos testes. Se aprovados, o
-workflow gera `slidev-dev-preview.zip` e mostra o link no resumo da execução em
-**Actions**. Descompacte e execute `py apresentar.py` no Windows ou
-`python3 apresentar.py` no Mac/Linux. Abra
-`http://127.0.0.1:8765/ia-para-amigos/5` para começar na história de Markov.
-O artefato fica disponível por 14 dias. Essa prévia não publica nem atualiza
-o site público; apenas `main` faz deploy no GitHub Pages.
+O workflow existente valida o build e os testes de navegação e gera o artefato
+`slidev-dev-preview.zip` na execução do PR. O deploy do Pages continua restrito
+a `main`. O quadro e as mudanças editoriais ficam em
+[`openspec/ACOMPANHAMENTO.md`](openspec/ACOMPANHAMENTO.md).
