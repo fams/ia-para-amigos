@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('all principal slides render without runtime errors or overflow', async ({page}) => {
   const errors: string[] = []
   page.on('pageerror', e => errors.push(e.message))
-  for(let n=1;n<=32;n++){
+  for(let n=1;n<=38;n++){
     await page.goto('/ia-para-amigos/'+n)
     const slide=page.locator('.slidev-page:visible .slidev-layout')
     await expect(slide.locator('h1')).toBeVisible()
@@ -25,9 +25,9 @@ test('step controls, reset and perceptron react to interaction',async({page})=>{
   await expect(slide.getByRole('button',{name:'Aprendizado',exact:true})).toHaveAttribute('aria-pressed','true')
   await slide.getByRole('button',{name:'Reiniciar',exact:true}).click()
   await expect(slide.getByRole('button',{name:'Probabilidade',exact:true})).toHaveAttribute('aria-pressed','true')
-  await page.goto('/ia-para-amigos/9')
+  await page.goto('/ia-para-amigos/15')
   await expect(page.locator('.slidev-page:visible .result strong')).toHaveText('Saída = 1')
-  await page.getByRole('slider',{name:'Viés',exact:true}).fill('-2')
+  await page.getByRole('slider',{name:'Viés',exact:true}).fill('-20')
   await expect(page.locator('.slidev-page:visible .result strong')).toHaveText('Saída = 0')
   await page.getByRole('button',{name:'Reiniciar pesos'}).click()
   await expect(page.locator('.slidev-page:visible .result strong')).toHaveText('Saída = 1')

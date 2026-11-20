@@ -6,7 +6,7 @@ author: ""
 download: false
 wakeLock: false
 exportFilename: ia-para-amigos
-colorSchema: dark
+colorSchema: light
 transition: fade
 mdc: true
 fonts:
@@ -61,49 +61,155 @@ Precisamos entender o suficiente para **delegar, verificar e controlar**.
 
 # Como prever o próximo passo?
 
-<div class="cards three">
-<div><b>Markov</b><p>Dependência entre estados e sequências.</p></div>
-<div><b>Monte Carlo</b><p>Usar amostras para explorar possibilidades.</p></div>
-<div><b>Shannon</b><p>Incerteza, informação e compressão.</p></div>
-</div>
-
-<div class="pending">Visual planejado: sequência de estados → amostragem → mensagem comprimida.</div>
-
----
-
-# Markov: do estado atual ao próximo
-
-<ConceptSteps :labels="['Estado atual', 'Probabilidades', 'Próximo estado', 'Nova observação']" />
-
 <div class="cards two">
-<div><b>A intuição</b><p>Um passo muda quais próximos passos são mais prováveis.</p></div>
-<div><b>A ponte para linguagem</b><p>Usar sequências simples antes de modelos que consideram contexto mais amplo.</p></div>
+<div><b>Markov</b><p>O contexto muda as chances do que vem a seguir.</p></div>
+<div><b>Shannon</b><p>A incerteza que sobra ajuda a explicar o que dá para comprimir.</p></div>
 </div>
 
-<div class="pending">Narrativa histórica Markov/Nekrasov e ligação com a lei dos grandes números: fontes ainda em curadoria.</div>
+<div class="note">Da próxima letra aos bits que precisamos transmitir.</div>
 
 ---
 
-# Monte Carlo: aprender com muitas tentativas
+<div class="eyebrow markov-eyebrow">1902 → 1906 · A pergunta</div>
 
-<div class="visual-equation"><span>Possibilidades</span><b>→</b><span>Amostras</span><b>→</b><span>Estimativa</span></div>
+# Os resultados precisam ser independentes?
 
-<div class="note">Repetir uma simulação ajuda a estimar resultados. Não torna qualquer conclusão verdadeira.</div>
+<div class="markov-timeline">
+  <div><span>1902 · NEKRASOV</span><b>Independência era necessária?</b><p>Nekrasov defendia que, para a lei dos grandes números funcionar, os resultados precisavam ser independentes.</p></div>
+  <div><span>1906 · MARKOV</span><b>Não para toda sequência.</b><p>Markov mostrou que, em certas sequências dependentes, as médias também podem se estabilizar.</p></div>
+</div>
 
-<div class="pending">Planejado: experimento visual controlado pelo professor e narrativa histórica de Ulam e von Neumann, com referência verificada.</div>
+<div class="note">Dependência não impede regularidade. Em seguida, Markov procurou um exemplo na literatura.</div>
+
+<div class="markov-source"><a href="https://doi.org/10.1016/j.laa.2003.12.041">Fonte histórica: Basharin, Langville e Naumov (2004)</a></div>
+
+<!-- Por independentes, entenda que saber um resultado não altera as chances do outro. Num jogo de moedas ideal isso pode ser razoável; numa sequência de letras, é uma questão empírica. Não diga que dependência garante a lei dos grandes números. -->
 
 ---
 
-# Shannon: o que surpreende informa
+<div class="eyebrow markov-eyebrow">1913 · O experimento com Pushkin</div>
 
-<div class="cards two">
-<div><b>Mensagem previsível</b><p>Podemos explorar regularidades para representá-la de forma mais compacta.</p></div>
-<div><b>Mensagem inesperada</b><p>Exige mais informação para distinguir o que aconteceu.</p></div>
+# A próxima letra depende da anterior?
+
+Em *Evguêni Oniéguin*, Markov marcou **20.000 letras** como vogais ou consoantes.
+
+<div class="markov-history-chart">
+  <div class="markov-key"><span>■ Vogal</span><span>■ Consoante</span></div>
+  <div class="markov-history-row"><b>Depois de vogal</b><div class="markov-history-track" role="img" aria-label="Depois de vogal, cerca de 12,8% de vogais"><i style="width:12.8%"></i><em style="width:87.2%"></em></div></div>
+  <div class="markov-history-row"><b>Depois de consoante</b><div class="markov-history-track" role="img" aria-label="Depois de consoante, cerca de 66,3% de vogais"><i style="width:66.3%"></i><em style="width:33.7%"></em></div></div>
 </div>
 
-<div class="note">Compressão e previsão serão uma ponte conceitual. “Comprimir é inteligência” não será tratado como equivalência demonstrada.</div>
+<div class="note">A letra anterior muda bastante as chances. E se fizermos a contagem com <i>Os Sertões</i>?</div>
 
-<div class="pending">Planejado: animação de compressão e surpresa, com matemática visual.</div>
+<div class="markov-source"><a href="https://doi.org/10.1017/S0269889706001074">Fonte: Markov (1913), tradução do texto original</a></div>
+
+<!-- Nota de apresentação: cerca de 12,8% de vogais depois de uma vogal, contra 66,3% depois de uma consoante. Duas barras de igual largura, cada uma com o próprio denominador. A contagem histórica é no trecho russo; a demonstração seguinte usa pares e trincas de letras internas a palavras de Os Sertões. Os recortes não são diretamente comparáveis. -->
+
+---
+
+# Veja as consoantes e vogais, letra por letra
+
+<div class="markov-slide-deck">Frase criada para a demonstração. Leia sem espaços e conte o que aparece depois de cada letra.</div>
+
+<MarkovLetterEvolution />
+
+<!--
+**Mostre a contagem crescendo.** Na frase «A lua clara surge no céu», marque V (vogal) ou C (consoante). Ignore espaços e acentos; por isso contamos também a transição entre palavras. Não conte a primeira letra como um par. Depois de duas letras, A → L é V → C e altera só a primeira linha. Avance até L → U e mostre que a segunda linha ganha a própria observação.
+
+**Ao final:** depois de vogal há 2 vogais e 7 consoantes; depois de consoante há 7 vogais e 2 consoantes. São 18 pares de uma frase criada para ensinar. Não compare os percentuais desse exemplo diretamente com a contagem histórica anterior ou com os digramas de Os Sertões, que aqui desconsideram pares entre palavras.
+-->
+
+---
+
+# Como o texto vira uma distribuição
+
+<MarkovVideo />
+
+<!--
+**Aponte o que muda.** No início, nenhuma transição foi registrada. Em câmera lenta, observe qual par entra e em que linha a barra é atualizada. A rajada acelera a demonstração e salta para o resultado do livro. No quadro tridimensional, destaque Q → U. Pause antes do sorteio se quiser pedir à turma um número para testar no próximo slide.
+-->
+
+---
+
+# Que letra cai na faixa?
+
+<div class="markov-slide-deck">No modelo de digrama, só a letra anterior determina a distribuição da próxima. A régua de 1.000 posições é uma aproximação.</div>
+
+<MarkovRuler />
+
+<!-- Peça um inteiro de 1 a 1.000. Mostre as faixas antes de aplicar. Começando em A, 787, 854, 147, 868 reproduzem ASTAS se usar a letra sorteada em cada passo. A régua de 1.000 aproxima a distribuição: A → Y tem 4 em 86.752 ocorrências e fica sem posição na régua. -->
+
+---
+
+# E se olharmos duas letras?
+
+<div class="markov-slide-deck">O trigrama distingue padrões que o digrama mistura. Pode soar mais como português, mas pares raros têm poucos exemplos.</div>
+
+<MarkovComparison />
+
+<MarkovRuler trigram />
+
+<!-- Compare U, QU e OU usando o número 500. Os três usam Os Sertões com a mesma normalização, sem acentos e apenas dentro das palavras. Mostre que os resultados das amostras ilustram uma possibilidade, não avaliam a qualidade. Não há palpite para um contexto sem observações. -->
+
+---
+
+<div class="eyebrow">Shannon · 1948 e 1951</div>
+
+# Quanto já sabemos antes da próxima letra?
+
+<div class="shannon-hero">
+<div>
+<div class="shannon-guess-row"><b>Sem contexto</b><div class="shannon-tiles" aria-label="Letra desconhecida"><span class="shannon-slot">?</span></div></div>
+<div class="shannon-guess-row"><b>Com contexto</b><div class="shannon-tiles" aria-label="Q, U, E, letra desconhecida"><span>Q</span><span>U</span><span>E</span><span class="shannon-slot">?</span></div></div>
+<div class="note">Em Markov, o contexto muda as chances.<br><b>Shannon mede a incerteza que sobra.</b></div>
+<div class="markov-source"><a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">Shannon, 1948</a> · <a href="https://doi.org/10.1002/j.1538-7305.1951.tb01366.x">Shannon, 1951</a></div>
+</div>
+<ShannonPortrait />
+</div>
+
+<!--
+**1 min | Comece pela turma.** Peça uma letra sem dar contexto; depois aponte as fichas Q, U, E e «?» e recolha dois ou três palpites. M de QUEM, R de QUER e D de QUEDA são possíveis. O objetivo não é acertar a letra que o professor pensou; é notar que o contexto muda o conjunto de palpites plausíveis. Exemplo em português criado para a aula, não um resultado do artigo nem uma medição de Os Sertões.
+
+**História em uma frase.** Mostre o retrato, sem atribuir uma data à fotografia. Em 1948, nos Bell Labs, Shannon formalizou a informação e ilustrou regularidades do inglês com aproximações por letras, digramas e trigramas. Em 1951, usou palpites humanos da próxima letra, dado o texto anterior, para estimar a entropia do inglês impresso.
+
+**Transição:** «Se eu já espero certas letras, todas carregam a mesma surpresa quando aparecem?»
+-->
+
+---
+
+<div class="eyebrow">Shannon · Surpresa e entropia</div>
+
+# O que é raro surpreende mais
+
+<ShannonTokens />
+
+<div class="note"><b>Entropia</b> é a surpresa média, levando em conta a frequência de cada possibilidade.</div>
+
+<!--
+**1 min | Conte as fichas.** Cada quadrado representa um sinal; cada linha tem 16 fichas. As quatro cores ajudam a acompanhar os mesmos sinais no próximo slide. Em cima, nenhum favorito. Embaixo, A aparece em metade das vezes e D em apenas duas de 16. Se o próximo for D, a surpresa é maior do que se for A. Mas A pesa mais na média. As frequências são inventadas para a aula.
+
+**Cuidado:** informação aqui não quer dizer importância, significado ou verdade. Entropia caracteriza a distribuição que estamos usando. Se perguntarem pelos números, a distribuição de cima tem 2 bits de entropia por sinal; a de baixo, 1,75. Não precisa mostrar logaritmos.
+
+**Transição:** «Dá para transformar essa diferença em economia de bits?»
+-->
+
+---
+
+<div class="eyebrow">Shannon · Compressão sem perdas</div>
+
+# Códigos curtos para sinais frequentes
+
+<ShannonBits />
+
+<!--
+**2 min | Primeiro, peça um palpite.** A encurtou de dois bits para um. C e D ficaram mais caros. A economia em A compensa? Clique para revelar: código fixo 16 × 2 = 32 bits; variável 8 × 1 + 4 × 2 + 2 × 3 + 2 × 3 = 28 bits. Aponte as quatro células vazias: as duas tiras têm a mesma escala e cada célula é um bit. As cores atribuem os bits ao sinal que os originou, não indicam zero ou um. A economia é de 4 bits (12,5%), sem contar o custo de comunicar a tabela. Neste exemplo, a tabela é conhecida pelos dois lados.
+
+**Mostre que volta ao original.** Escreva 010111 e leia da esquerda para a direita: 0 | 10 | 111 dá A, B, D. As barras são só para explicar; não foram transmitidas. Nenhum código é começo de outro, então a separação não depende de adivinhar. O quadro é um exemplo didático de código sem prefixos, não um algoritmo atribuído a Shannon.
+
+**Feche o elo com Markov.** Aqui usamos uma tabela única, sem olhar para trás. Um compressor que use contexto pode usar chances diferentes dependendo das letras anteriores. Para valer a pena, o modelo precisa funcionar em texto novo e a economia tem de superar os custos extras. Não diga que toda mensagem encurta ou que prever texto é o mesmo que compreender.
+
+**Passagem para o próximo bloco:** «Até aqui, nós contamos regularidades ou escrevemos o código à mão. Como fazer uma máquina aprender a dar peso às pistas?»
+-->
 
 ---
 
@@ -122,23 +228,25 @@ Precisamos entender o suficiente para **delegar, verificar e controlar**.
 
 # Um neurônio artificial, por dentro
 
-<div class="visual-equation"><span>Entradas × pesos</span><b>+</b><span>Viés</span><b>→</b><span>Saída</span></div>
-
 <MicroNeuron />
 
-<div class="note">Este brinquedo calcula uma soma ponderada e uma decisão por limiar. Ainda não há treinamento nem jogo.</div>
+<div class="markov-source"><a href="https://pubmed.ncbi.nlm.nih.gov/13602029/">Referência do conceito: Rosenblatt (1958)</a></div>
+
+<!--
+**Siga o desenho da esquerda para a direita.** Cada círculo à esquerda contém um sinal. Cada seta tem o seu peso: é um multiplicador, não outra entrada. Σ junta as três contribuições com o viés. No limiar de zero ou mais, a saída é 1; abaixo, é 0.
+
+**Interação.** Mantenha os demais pesos fixos, passe o peso 1 de 0,5 a 0,1 e aponte onde a saída vira. Use Reiniciar pesos para voltar. Os valores mudam porque alguém ajusta os controles: não é treinamento automático.
+-->
 
 ---
 
-# Primeiro laboratório: uma micro-rede no Flappy
+# Flappy Bird: o perceptron no comando
 
-<div class="cards three">
-<div><b>Observar</b><p>Posição, distância e movimento como entradas.</p></div>
-<div><b>Ajustar</b><p>Alterar pesos à mão e ver a decisão mudar.</p></div>
-<div><b>Comparar</b><p>Jogar, pausar, avançar um passo e repetir.</p></div>
-</div>
+<FlappyCanonical />
 
-<div class="pending">Espaço reservado. O protótipo do jogo não está incluído nesta versão. Integração e validação visual serão etapas próprias.</div>
+<!--
+**Compare em passos.** Pause e observe os sinais do jogo entrando pelos nós x. Cada peso w multiplica uma entrada; o viés entra como termo adicional. A soma passa por um limiar e a saída decide bater a asa (1) ou não (0). Troque um peso ou o viés, repita o passo a partir do mesmo estado e confira se mudou a ação. Em modo manual, o jogo obedece à pessoa, não ao perceptron. Este demonstrador usa pesos escolhidos à mão, não treinados.
+-->
 
 ---
 
