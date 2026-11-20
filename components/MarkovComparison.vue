@@ -44,17 +44,17 @@ const samples = [[113, 271, 389], [500, 167, 703], [797, 337, 622]].map(draws =>
 
 <style scoped>
 .comparison { margin: 0 0 10px; }
-.comparison-top { display:flex; align-items:baseline; gap:10px; color:#bdd4d7; font-size:14px; margin-bottom:5px; }
-.comparison-top strong { color:#edf5f6; font-size:16px; }
+.comparison-top { display:flex; align-items:baseline; gap:10px; color:var(--muted); font-size:14px; margin-bottom:5px; }
+.comparison-top strong { color:var(--ink); font-size:16px; }
 .comparison-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; max-width:864px; }
-.comparison-card { display:flex; align-items:center; justify-content:space-between; gap:6px; padding:4px 10px; border:1px solid #365b63; border-radius:6px; background:#1b313f; color:#bdd4d7; font-size:14px; }
-.comparison-card strong { color:#edf5f6; font-size:21px; }
-.comparison-card b { color:#ffdc95; }
+.comparison-card { display:flex; align-items:center; justify-content:space-between; gap:6px; padding:4px 10px; border:1px solid var(--line); border-radius:6px; background:var(--panel); color:var(--muted); font-size:14px; }
+.comparison-card strong { color:var(--ink); font-size:21px; }
+.comparison-card b { color:var(--amber); }
 .samples { margin-left:auto; position:relative; }
 .samples summary { cursor:pointer; text-decoration:underline; }
-.sample-card { position:absolute; z-index:10; top:100%; right:0; width:435px; padding:10px 14px; background:#172c38; border:1px solid #82b1b3; border-radius:8px; color:#ecf4f4; font-size:16px; box-shadow:0 6px 20px #0007; }
+.sample-card { position:absolute; z-index:10; top:100%; right:0; width:435px; padding:10px 14px; background:var(--paper); border:1px solid var(--line); border-radius:8px; color:var(--ink); font-size:16px; box-shadow:0 6px 20px #142c3626; }
 .sample-card p { margin:3px 0; line-height:1.3; }
 .sample-card table { width:100%; margin:7px 0; font-size:16px; }
 .sample-card th,.sample-card td { padding:3px 6px; }
-.sample-card td { color:#ffdc95; font-family:monospace; letter-spacing:.1em; }
+.sample-card td { color:var(--amber); font-family:monospace; letter-spacing:.1em; }
 </style>

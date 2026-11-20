@@ -22,8 +22,8 @@ function reset(){w1.value=.5;w2.value=-.5;bias.value=0}
 </section>
 </template>
 <style scoped>
-.neuron{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;background:#1a2e3a;padding:20px 25px;border-radius:10px}
+.neuron{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;background:var(--panel);padding:20px 25px;border-radius:10px}
 .sliders{display:flex;flex-direction:column;gap:12px}.sliders label{font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:20px}
-input{accent-color:#81d5c4;width:200px}.result{display:flex;flex-direction:column;gap:5px;font-size:14px}.result b{font-size:23px}.result strong{color:#a3e5d8;font-size:25px}
-button{background:#203642;color:#edf3f3;border:1px solid #53747d;border-radius:4px;padding:5px;cursor:pointer}
+input{accent-color:var(--accent);width:200px}.result{display:flex;flex-direction:column;gap:5px;font-size:14px}.result b{font-size:23px}.result strong{color:var(--accent);font-size:25px}
+button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:5px;cursor:pointer}
 </style>

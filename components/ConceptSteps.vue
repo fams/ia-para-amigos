@@ -21,8 +21,8 @@ function advance(){current.value=(current.value+1)%props.labels.length}
 </template>
 <style scoped>
 .track{display:flex;align-items:center;gap:10px;margin:24px 0;flex-wrap:wrap}
-.track button{border:1px solid #53747d;border-radius:10px;background:#203642;color:#eaf2f2;padding:16px 15px;font-size:20px;cursor:pointer;transition:background .2s,transform .2s;max-width:175px}
-.track button.active{background:#a3e5d8;color:#10252d;transform:translateY(-5px);border-color:#a3e5d8}
-.arrow{color:#81d5c4}.controls{display:flex;gap:14px;align-items:center;font-size:15px;color:#bacfd3}
-.controls button{border:1px solid #53747d;border-radius:5px;padding:8px 12px;cursor:pointer;color:#edf3f3;background:#203642}
+.track button{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:16px 15px;font-size:20px;cursor:pointer;transition:background .2s,transform .2s;max-width:175px}
+.track button.active{background:var(--accent);color:#fff;transform:translateY(-5px);border-color:var(--accent)}
+.arrow{color:var(--accent)}.controls{display:flex;gap:14px;align-items:center;font-size:15px;color:var(--muted)}
+.controls button{border:1px solid var(--line);border-radius:5px;padding:8px 12px;cursor:pointer;color:var(--ink);background:var(--panel)}
 </style>

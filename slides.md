@@ -6,7 +6,7 @@ author: ""
 download: false
 wakeLock: false
 exportFilename: ia-para-amigos
-colorSchema: dark
+colorSchema: light
 transition: fade
 mdc: true
 fonts:
